@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التخليص السريع | تخليص جمركي وخدمات لوجستية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{
+    --ink:#0E2A3B;
+    --deep:#0B2233;
+    --deep2:#123249;
+    --gold:#B8863E;
+    --gold-light:#D9AE6D;
+    --sand:#F4EFE4;
+    --paper:#FBF9F4;
+    --line:rgba(14,42,59,0.14);
+    --white:#FFFFFF;
+    --muted:#5A6E78;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Tajawal', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Cairo', sans-serif;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{
+    max-width:1140px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  .grain{
+    position:fixed; inset:0; pointer-events:none; opacity:0.035; z-index:5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    position:sticky; top:0; z-index:40;
+    background:rgba(251,249,244,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:1140px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{width:42px; height:42px; flex-shrink:0;}
+  .brand-text .name{font-family:'Cairo',sans-serif; font-weight:800; font-size:19px; color:var(--deep); letter-spacing:0.2px;}
+  .brand-text .tag{font-size:11px; color:var(--muted); font-weight:500;}
+  .nav-links{display:flex; align-items:center; gap:30px;}
+  .nav-links a{font-size:15px; font-weight:500; color:var(--deep2); transition:color .2s;}
+  .nav-links a:hover{color:var(--gold);}
+  .call-btn{
+    display:flex; align-items:center; gap:8px;
+    background:var(--deep); color:var(--sand);
+    padding:10px 20px; border-radius:3px;
+    font-weight:700; font-size:14px;
+    border:1px solid var(--deep);
+    transition:background .25s, transform .2s;
+  }
+  .call-btn:hover{background:var(--gold); border-color:var(--gold); color:var(--deep);}
+  .call-btn svg{width:16px; height:16px;}
+  @media (max-width:820px){
+    .nav-links{display:none;}
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    padding:86px 0 100px;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(184,134,62,0.14), transparent 60%),
+      var(--deep);
+    color:var(--sand);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(180deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 68px);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+    position:relative; z-index:2;
+  }
+  .eyebrow-line{
+    display:flex; align-items:center; gap:12px; margin-bottom:22px;
+  }
+  .eyebrow-line .rule{width:38px; height:2px; background:var(--gold-light);}
+  .eyebrow-line span{font-size:14px; color:var(--gold-light); font-weight:500;}
+  .hero h1{
+    font-size:44px; font-weight:800; line-height:1.35; color:var(--white);
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--gold-light);
+  }
+  .hero p.lead{
+    font-size:17px; color:rgba(244,239,228,0.82); max-width:520px; margin-bottom:34px; font-weight:400;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:44px;}
+  .btn-primary{
+    background:var(--gold); color:var(--deep);
+    padding:15px 30px; border-radius:3px; font-weight:700; font-size:15px;
+    transition:background .25s, transform .2s;
+    display:inline-flex; align-items:center; gap:10px;
+  }
+  .btn-primary:hover{background:var(--gold-light); transform:translateY(-1px);}
+  .btn-ghost{
+    border:1px solid rgba(244,239,228,0.35); color:var(--sand);
+    padding:15px 30px; border-radius:3px; font-weight:600; font-size:15px;
+    transition:border-color .25s, background .25s;
+  }
+  .btn-ghost:hover{border-color:var(--gold-light); background:rgba(244,239,228,0.06);}
+  .hero-stats{display:flex; gap:40px;}
+  .hero-stats .stat b{display:block; font-family:'Cairo',sans-serif; font-size:26px; color:var(--white); font-weight:800;}
+  .hero-stats .stat span{font-size:13px; color:rgba(244,239,228,0.65);}
+
+  /* seal graphic */
+  .seal-wrap{position:relative; display:flex; align-items:center; justify-content:center;}
+  .seal-wrap svg{width:100%; max-width:340px; height:auto;}
+
+  /* ===== ROUTES STRIP ===== */
+  .routes{
+    background:var(--sand);
+    border-bottom:1px solid var(--line);
+  }
+  .routes .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 28px; flex-wrap:wrap; gap:18px;
+  }
+  .route-item{display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--deep2);}
+  .route-item svg{width:22px; height:22px; color:var(--gold);}
+
+  /* ===== SECTION HEADS ===== */
+  .section{padding:96px 0;}
+  .section.alt{background:var(--sand);}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .kicker{display:flex; align-items:center; gap:12px; margin-bottom:16px;}
+  .kicker .rule{width:38px; height:2px; background:var(--gold);}
+  .kicker span{font-size:14px; color:var(--gold); font-weight:700;}
+  .section-head h2{font-size:32px; font-weight:800; color:var(--deep); line-height:1.4;}
+  .section-head p{color:var(--muted); font-size:16px; margin-top:14px;}
+
+  /* ===== SERVICES ===== */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+    border:1px solid var(--line);
+  }
+  .service-card{
+    padding:42px 34px;
+    border-left:1px solid var(--line);
+    position:relative;
+    transition:background .25s;
+  }
+  .service-card:last-child{border-left:none;}
+  .service-card:hover{background:var(--white);}
+  .service-num{
+    font-family:'Cairo',sans-serif; font-size:13px; font-weight:700; color:var(--gold);
+    letter-spacing:1px; margin-bottom:26px; display:block;
+  }
+  .service-icon{width:46px; height:46px; margin-bottom:22px; color:var(--deep);}
+  .service-card h3{font-size:19px; font-weight:700; color:var(--deep); margin-bottom:12px;}
+  .service-card p{font-size:14.5px; color:var(--muted);}
+  @media (max-width:820px){
+    .services-grid{grid-template-columns:1fr;}
+    .service-card{border-left:none; border-bottom:1px solid var(--line);}
+  }
+
+  /* ===== WHY ===== */
+  .why-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:center;}
+  .why-list{display:flex; flex-direction:column;}
+  .why-item{
+    display:flex; gap:20px; padding:26px 0; border-bottom:1px solid var(--line);
+  }
+  .why-item:first-child{padding-top:0;}
+  .why-item .mark{
+    width:38px; height:38px; border-radius:50%; border:1.5px solid var(--gold);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .why-item .mark svg{width:18px; height:18px; color:var(--gold);}
+  .why-item h4{font-size:16.5px; font-weight:700; color:var(--deep); margin-bottom:6px;}
+  .why-item p{font-size:14.5px; color:var(--muted);}
+  .why-visual{
+    background:var(--deep); border-radius:4px; padding:44px;
+    position:relative; overflow:hidden;
+  }
+  .why-visual::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 30% 20%, rgba(184,134,62,0.18), transparent 55%);
+  }
+  .why-visual .quote{position:relative; z-index:2;}
+  .why-visual .quote-mark{font-family:'Cairo',sans-serif; font-size:64px; color:var(--gold); line-height:1; margin-bottom:8px;}
+  .why-visual p{color:var(--sand); font-size:18px; line-height:1.9; font-weight:400; margin-bottom:26px;}
+  .why-visual .attrib{display:flex; align-items:center; gap:12px;}
+  .why-visual .attrib .line{width:30px; height:2px; background:var(--gold);}
+  .why-visual .attrib span{color:rgba(244,239,228,0.75); font-size:13px; font-weight:600;}
+
+  /* ===== CONTACT ===== */
+  .contact{
+    background:var(--deep); color:var(--sand); position:relative; overflow:hidden;
+  }
+  .contact::before{
+    content:""; position:absolute; inset:0;
+    background-image:repeating-linear-gradient(180deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 68px);
+  }
+  .contact-grid{
+    display:grid; grid-template-columns:1.2fr 0.8fr; gap:60px; align-items:center;
+    position:relative; z-index:2;
+  }
+  .contact-info .kicker span{color:var(--gold-light);}
+  .contact-info h2{font-size:32px; font-weight:800; color:var(--white); margin-bottom:18px;}
+  .contact-info p.lead{color:rgba(244,239,228,0.8); font-size:16px; margin-bottom:36px; max-width:460px;}
+  .contact-line{
+    display:flex; align-items:center; gap:16px; padding:18px 0; border-top:1px solid rgba(244,239,228,0.14);
+  }
+  .contact-line:last-of-type{border-bottom:1px solid rgba(244,239,228,0.14);}
+  .contact-line .ic{
+    width:42px; height:42px; border-radius:50%; background:rgba(184,134,62,0.16);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .contact-line .ic svg{width:19px; height:19px; color:var(--gold-light);}
+  .contact-line .txt span{display:block; font-size:12.5px; color:rgba(244,239,228,0.55); margin-bottom:3px;}
+  .contact-line .txt a, .contact-line .txt b{font-size:17px; font-weight:700; color:var(--white); direction:ltr; display:inline-block;}
+  .contact-actions{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+
+  .qr-card{
+    background:var(--paper); border-radius:6px; padding:36px 32px;
+    text-align:center; box-shadow:0 30px 60px rgba(0,0,0,0.35);
+  }
+  .qr-card .qr-label{font-size:12.5px; color:var(--muted); font-weight:700; letter-spacing:0.3px; margin-bottom:18px;}
+  #qrcode{
+    display:flex; justify-content:center; padding:14px;
+    background:var(--white); border:1px solid var(--line); border-radius:4px;
+    width:216px; margin:0 auto 18px;
+  }
+  .qr-card .qr-sub{font-size:13.5px; color:var(--deep2); font-weight:600;}
+  .qr-card .qr-phone{font-size:15px; color:var(--gold); font-weight:800; direction:ltr; margin-top:6px;}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--ink); color:rgba(244,239,228,0.55); padding:34px 0;}
+  .foot-wrap{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+    font-size:13px;
+  }
+  .foot-wrap .fbrand{color:var(--sand); font-weight:700; font-family:'Cairo',sans-serif;}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .seal-wrap{order:-1; margin-bottom:10px;}
+    .seal-wrap svg{max-width:220px;}
+    .hero h1{font-size:32px;}
+    .why-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .section{padding:64px 0;}
+    .section-head h2{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" stroke="#B8863E" stroke-width="1.6"/>
+        <circle cx="24" cy="24" r="17" stroke="#0E2A3B" stroke-width="1"/>
+        <path d="M14 27c2-6 6-10 10-10s8 4 10 10" stroke="#0E2A3B" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M24 17v-4M24 34v3M14 27h-3M37 27h3" stroke="#B8863E" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <div class="brand-text">
+        <div class="name">التخليص السريع</div>
+        <div class="tag">تخليص جمركي وخدمات لوجستية</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#services">خدماتنا</a>
+      <a href="#why">لماذا نحن</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+    <a class="call-btn" href="tel:+966544747968">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11 11 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.56 3.5 1 1 0 01-.25 1z"/></svg>
+      اتصل الآن
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow-line"><span>بحرًا. جوًا. برًا.</span><div class="rule"></div></div>
+      <h1>تخليص جمركي موثوق<br>وخدمات لوجستية <em>بلا تعقيد</em></h1>
+      <p class="lead">
+        نتولى إجراءات التخليص الجمركي ونقل شحناتكم الواردة والصادرة والعابرة (ترانزيت)
+        بمتابعة دقيقة من المنفذ حتى وجهتها النهائية، عبر جميع المنافذ البحرية والجوية والبرية.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="tel:+966544747968">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11 11 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.56 3.5 1 1 0 01-.25 1z"/></svg>
+          044 747 968 966+
+        </a>
+        <a class="btn-ghost" href="#contact">اطلب عرض سعر</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>+12</b><span>سنة خبرة ميدانية</span></div>
+        <div class="stat"><b>3</b><span>منافذ: بحر · جو · بر</span></div>
+        <div class="stat"><b>24/7</b><span>متابعة الشحنات</span></div>
+      </div>
+    </div>
+    <div class="seal-wrap">
+      <svg viewBox="0 0 320 320" fill="none">
+        <circle cx="160" cy="160" r="150" stroke="#D9AE6D" stroke-width="1" stroke-dasharray="2 6"/>
+        <circle cx="160" cy="160" r="128" stroke="#D9AE6D" stroke-opacity="0.5" stroke-width="1"/>
+        <circle cx="160" cy="160" r="104" fill="none" stroke="#D9AE6D" stroke-width="1.5"/>
+        <!-- ship -->
+        <g transform="translate(160,108)">
+          <path d="M-30 8 h60 l-8 14 h-44 z" stroke="#F4EFE4" stroke-width="2" fill="none"/>
+          <path d="M-14 8 V-14 h10 v14" stroke="#F4EFE4" stroke-width="2" fill="none"/>
+          <path d="M2 8 V-6 h14 l6 14" stroke="#F4EFE4" stroke-width="2" fill="none"/>
+        </g>
+        <!-- plane -->
+        <g transform="translate(226,170) rotate(45)">
+          <path d="M0 -20 L4 -6 L18 0 L4 4 L4 16 L9 20 L-9 20 L-4 16 L-4 4 L-18 0 L-4 -6 Z" fill="#F4EFE4"/>
+        </g>
+        <!-- truck -->
+        <g transform="translate(112,182)">
+          <rect x="-24" y="-10" width="30" height="16" stroke="#F4EFE4" stroke-width="2" fill="none"/>
+          <path d="M6 -4 h12 l8 8 v6 h-20 z" stroke="#F4EFE4" stroke-width="2" fill="none"/>
+          <circle cx="-14" cy="8" r="4" fill="#F4EFE4"/>
+          <circle cx="10" cy="8" r="4" fill="#F4EFE4"/>
+        </g>
+        <text x="160" y="238" text-anchor="middle" font-family="Cairo, sans-serif" font-size="13" font-weight="700" fill="#D9AE6D" letter-spacing="2">CUSTOMS · CLEARANCE</text>
+        <text x="160" y="90" text-anchor="middle" font-family="Cairo, sans-serif" font-size="13" font-weight="700" fill="#D9AE6D" letter-spacing="2">SEA · AIR · LAND</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="routes">
+  <div class="wrap">
+    <div class="route-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 18c1.5 1.3 3 1.3 4.5 0s3-1.3 4.5 0 3 1.3 4.5 0 3-1.3 4.5 0M4 14l1-8h14l1 8M9 6V3h6v3"/></svg>
+      شحن بحري لجميع الموانئ
+    </div>
+    <div class="route-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.5 20l1.5-6-8-1 2-2 6 1 3-7c.4-1 1.8-1 2.2 0l-1 7.5 5 1-1.5 2-4.5-.5L13 20z"/></svg>
+      شحن جوي سريع
+    </div>
+    <div class="route-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="7" width="13" height="9"/><path d="M14 10h4l4 4v2h-8z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
+      نقل بري داخلي وخارجي
+    </div>
+  </div>
+</div>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker"><div class="rule"></div><span>خدماتنا</span></div>
+      <h2>تغطية كاملة لشحناتكم من وإلى المملكة</h2>
+      <p>نرافق شحنتكم في كل مرحلة من مراحلها، بدءًا من إعداد المستندات الجمركية وحتى التسليم النهائي.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="#0E2A3B" stroke-width="1.6"><path d="M8 34c3 2 6 2 9 0s6-2 9 0 6 2 9 0M11 27l2-13h20l2 13M18 14V8h12v6"/></svg>
+        <h3>تخليص ونقل وارد</h3>
+        <p>استلام وتخليص الشحنات القادمة من الخارج عبر المنافذ البحرية والجوية والبرية، ونقلها مباشرة إلى مستودعكم.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="#0E2A3B" stroke-width="1.6"><path d="M6 38V14a4 4 0 014-4h12l6 6h10a4 4 0 014 4v18a4 4 0 01-4 4H10a4 4 0 01-4-4z"/><path d="M18 28l6-6 6 6M24 22v14"/></svg>
+        <h3>تخليص ونقل صادر</h3>
+        <p>إنهاء كامل إجراءات التصدير الجمركية وتنسيق الشحن نحو الأسواق الخارجية بأفضل المسارات وأقل وقت.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="#0E2A3B" stroke-width="1.6"><path d="M6 24h30M28 16l8 8-8 8M42 24H12M20 32l-8-8 8-8"/></svg>
+        <h3>تخليص ونقل ترانزيت</h3>
+        <p>إدارة شحنات العبور بين المنافذ والدول المجاورة بمتابعة مستمرة تضمن سلامة الشحنة وسرعة إنجازها.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="why">
+  <div class="wrap why-grid">
+    <div class="why-list">
+      <div class="section-head" style="margin-bottom:36px;">
+        <div class="kicker"><div class="rule"></div><span>لماذا نحن</span></div>
+        <h2>خبرة ميدانية تختصر عليك الوقت والجهد</h2>
+      </div>
+      <div class="why-item">
+        <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div><h4>متابعة مباشرة لكل شحنة</h4><p>تواصل مستمر معك من لحظة وصول الشحنة حتى تسليمها.</p></div>
+      </div>
+      <div class="why-item">
+        <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
+        <div><h4>معرفة دقيقة بالأنظمة الجمركية</h4><p>إنهاء المعاملات وفق اللوائح المحدثة دون تأخير أو إيقاف.</p></div>
+      </div>
+      <div class="why-item">
+        <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18"/></svg></div>
+        <div><h4>شبكة تغطي جميع المنافذ</h4><p>ارتباطات موثوقة في الموانئ والمطارات والمنافذ البرية الرئيسية.</p></div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <div class="quote">
+        <div class="quote-mark">"</div>
+        <p>هدفنا أن تصل شحنتك في وقتها، وأن تبقى أنت بعيدًا عن تعقيدات الأوراق والإجراءات.</p>
+        <div class="attrib"><div class="line"></div><span>فريق التخليص السريع</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <div class="kicker"><div class="rule"></div><span>تواصل معنا</span></div>
+      <h2>جاهزون لاستلام شحنتك القادمة</h2>
+      <p class="lead">تواصل معنا مباشرة عبر الهاتف، أو امسح رمز الاستجابة السريعة للمراسلة الفورية على واتساب.</p>
+
+      <div class="contact-line">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11 11 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.56 3.5 1 1 0 01-.25 1z"/></svg></div>
+        <div class="txt"><span>اتصل بنا مباشرة</span><a href="tel:+966544747968">966 54 474 7968+</a></div>
+      </div>
+      <div class="contact-line">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg></div>
+        <div class="txt"><span>واتساب للأعمال</span><a href="https://wa.me/966544747968" target="_blank" rel="noopener">966 54 474 7968+</a></div>
+      </div>
+
+      <div class="contact-actions">
+        <a class="btn-primary" href="tel:+966544747968">اتصل الآن</a>
+        <a class="btn-ghost" href="https://wa.me/966544747968" target="_blank" rel="noopener">راسلنا واتساب</a>
+      </div>
+    </div>
+
+    <div class="qr-card">
+      <div class="qr-label">امسح للتواصل عبر واتساب</div>
+      <div id="qrcode"></div>
+      <div class="qr-sub">أو اتصل مباشرة على</div>
+      <div class="qr-phone">966 54 474 7968+</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-wrap">
+    <span><span class="fbrand">التخليص السريع</span> — تخليص جمركي وخدمات لوجستية بحرًا وجوًا وبرًا</span>
+    <span>966544747968+ · جميع الحقوق محفوظة</span>
+  </div>
+</footer>
+
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://wa.me/966544747968",
+    width: 188,
+    height: 188,
+    colorDark: "#0E2A3B",
+    colorLight: "#FFFFFF",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+</script>
+</body>
+</html>
